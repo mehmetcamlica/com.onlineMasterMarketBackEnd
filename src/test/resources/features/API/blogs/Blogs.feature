@@ -18,3 +18,15 @@ Feature: As a provider I want to be able to access blogs via API connection.
     # Api kullanicisi "api/blogs" path parametrelerini olusturur
     * The api user sends a "GET" request, saves the returned response, and verifies that the status code is '401' with the reason phrase Unauthorized.
     # Api kullanicisi GET request gonderir, donen responsei kaydeder, status codeun '401' ve reason phrase bilgisinin Unauthorized oldugunu dogrular
+
+  Scenario: Bir provider olarak API bağlantısı üzerinden contact messages'a erişebilmek istiyorum.
+
+    * The api user sets "api/contacts" path parameters.
+    # Api kullanicisi "api/blogs" path parametrelerini olusturur
+    * The api user sends a "GET" request and saves the returned response.
+    # Api kullanicisi GET request gonderir ve donen responsei kaydeder
+    * The api user verifies that the status code is 200.
+    # Api kullanicisi status codeun 200 oldugunu dogrular
+    * The api user verifies that the "response.response_message" information in the response body is "Contact Messages Listed Successfully".
+    # Api kullanicisi response bodydeki response.response_message bilgisinin "Blogs Listed Successfully" oldugunu dogrular
+

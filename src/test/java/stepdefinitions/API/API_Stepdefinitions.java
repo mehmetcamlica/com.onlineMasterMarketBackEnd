@@ -6,7 +6,7 @@ import utilities.API_Utilities.API_Methods;
 
 import static org.junit.Assert.assertEquals;
 
-public class API_Stepdefinitions {
+public class  API_Stepdefinitions {
 
     String requestBody;
 
