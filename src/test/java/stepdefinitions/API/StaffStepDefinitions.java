@@ -3,7 +3,6 @@ package stepdefinitions.API;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonParser;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.DataTableType;
 import io.cucumber.java.DocStringType;
@@ -20,7 +19,6 @@ import org.json.JSONObject;
 import org.junit.Assert;
 import utilities.API_Utilities.APIReader;
 import utilities.API_Utilities.Authentication;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -31,7 +29,7 @@ import java.util.Map;
 
 public class StaffStepDefinitions {
 
-	private static ObjectMapper objectMapper = new ObjectMapper();
+	private static final ObjectMapper objectMapper = new ObjectMapper();
 	Response response;
 	RequestSpecification spec;
 	String token;
@@ -216,9 +214,8 @@ public class StaffStepDefinitions {
 				.spec(spec)
 				.contentType(ContentType.JSON)
 				.when()
-				.body(jsonNode.toString()).log().all()
+				.body(jsonNode.toString())
 				.post(fullPath);
-		response.then().log().all();
 		addedId = response.jsonPath().getInt("data.added_staff_id");
 		System.out.println(addedId);
 	}
@@ -236,7 +233,7 @@ public class StaffStepDefinitions {
 		response.then().log().all();
 	}
 
-	@Given("The api user send request from {string} file.Selcuk")
+	@Given("The api user send post request from {string} file.Selcuk")
 	public void the_api_user_send_request_from_file_selcuk(String fileName) {
 		JSONObject requestBoydJSObject = getJsonObjectFromFile(fileName);
 		response = RestAssured
@@ -246,6 +243,26 @@ public class StaffStepDefinitions {
 				.when()
 				.body(requestBoydJSObject.toString())
 				.post(fullPath);
+	}
+
+	@Given("The api user send patch request from {string} file.Selcuk")
+	public void the_api_user_send_patch_request_from_file_selcuk(String fileName) {
+		JSONObject requestBoydJSObject = getJsonObjectFromFile(fileName);
+		response = RestAssured
+				.given()
+				.spec(spec)
+				.contentType(ContentType.JSON)
+				.when()
+				.body(requestBoydJSObject.toString())
+				.patch(fullPath);
+
+	}
+
+	@Given("The api user verifies {string} in response matches the id path parameter in PATCH id {int}.Selcuk")
+	public void the_api_user_verifies_in_response_matches_the_id_path_parameter_in_patch_id_selcuk(String responsePath, int expectedId) {
+		int actualResponseId = response.jsonPath().getInt(responsePath);
+
+		Assert.assertEquals(expectedId, actualResponseId);
 	}
 
 	public JSONObject getJsonObjectFromFile(String fileName) {
