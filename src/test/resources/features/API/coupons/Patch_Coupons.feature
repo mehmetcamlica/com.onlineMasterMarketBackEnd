@@ -8,6 +8,8 @@ Feature: As a provider, I want to be able to update coupon information with the 
   # response_message bilgisinin "Coupon Details Updated successfully" oldugu dogrulanmali.
 
     * The api user sets "api/editCoupon" path parameters, esra.
+    * The api user sets {string} request body with {int}, {string}, {int}, {string}, {int}, {int}, {string}, esra
+    * The api user sends a "PATCH" request and saves the returned response, esra.
     * The api user verifies that the status code is 200, esra.
     * The api user verifies that the "response.response_message" information in the response body is "Coupon Details Updated successfully", esra.
 

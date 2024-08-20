@@ -1,4 +1,3 @@
-@wip
 Feature: As a provider I want to be able to access coupons via API connection.
 
   Scenario: When a GET request is sent to /api/myCoupons endpoint with valid authorization information,it should be verified that the status code returned is 200 and the response_message in the response body is "Service Coupon History Listed Successfully". (Valid Authorization)
