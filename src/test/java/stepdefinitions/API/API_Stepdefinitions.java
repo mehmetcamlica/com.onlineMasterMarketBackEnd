@@ -33,10 +33,11 @@ public class API_Stepdefinitions {
         API_Methods.statusCodeAssert(code);
     }
 
-    /*@Given("The api user verifies that the {string} information in the response body is {string}")
+    @Given("The api user verifies that the {string} information in the response body is {string}.")
     public void the_api_user_verifies_that_the_information_in_the_response_body_is(String key, String value) {
         API_Methods.assertBody(key, value);
-    }*/
+    }
+
 
     @Given("The api user verifies that the {string} information in the returned response body is the same as the id path parameter written in the endpoint.")
     public void the_api_user_verifies_that_the_information_in_the_returned_response_body_is_the_same_as_the_id_path_parameter_written_in_the_endpoint(String reponseId) {
