@@ -238,6 +238,13 @@ public class API_Methods {
                 pp2 = "addBlogCategory";
                 folder = "blogCategory";
                 idKey = "data.added_blog_category_id";
+<<<<<<< HEAD
+=======
+            } else if (scenarioName.contains("coupon")) {
+                pp2 = "addCoupon";
+                folder = "coupon";
+                idKey = "data.added_coupon_id";
+>>>>>>> main
             } else {
                 // Varsayılan değerler
                 pp2 = "defaultPp2";

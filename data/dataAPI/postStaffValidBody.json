@@ -1,0 +1,9 @@
+{
+  "firstname":"Test Data",
+  "mobileno" :"55555555555",
+  "email":"martin@gmail.com",
+  "gender":"Male",
+  "dob":"1985-04-18",
+  "shop_id":15,
+  "about_emp":"About Test"
+}
