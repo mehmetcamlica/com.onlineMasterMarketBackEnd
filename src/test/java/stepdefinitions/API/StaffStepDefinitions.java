@@ -38,6 +38,8 @@ public class StaffStepDefinitions {
 	JsonPath responseJsonPath;
 	int addedId;
 
+	int deletedId;
+
 	@Given("The api user close the api connection.Selcuk")
 	public void the_api_user_close_the_api_connection_selcuk() {
 		response = null;
@@ -46,6 +48,7 @@ public class StaffStepDefinitions {
 		token = null;
 		responseJsonPath = null;
 		addedId = 0;
+		deletedId = 0;
 	}
 
 	@Given("The api user sets up spec for base url and valid token.Selcuk")
@@ -263,6 +266,17 @@ public class StaffStepDefinitions {
 		int actualResponseId = response.jsonPath().getInt(responsePath);
 
 		Assert.assertEquals(expectedId, actualResponseId);
+	}
+
+	@Given("The api user send delete request for that spesific {int}.Selcuk")
+	public void the_api_user_send_delete_request_for_that_spesific_selcuk(int idToDelete) {
+		response = RestAssured
+				.given()
+				.spec(spec)
+				.contentType(ContentType.JSON)
+				.when()
+				.delete(fullPath);
+		deletedId = idToDelete;
 	}
 
 	public JSONObject getJsonObjectFromFile(String fileName) {
