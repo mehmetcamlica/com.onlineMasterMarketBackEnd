@@ -17,6 +17,7 @@ import static hooks.HooksAPI.spec;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
+import static utilities.API_Utilities.API_Methods.fullPath;
 
 public class CouponsStepDefinitions {
 
@@ -239,6 +240,128 @@ public class CouponsStepDefinitions {
 
         }
 
+
+    }
+
+
+    @Given("The api user edits the created coupon, sends patch request and saves the returned response, esra")
+    public void the_api_user_edits_the_created_coupon_sends_patch_request_and_saves_the_returned_response_esra() {
+
+        // Zaten bir onceki stepte yeni bir coupon olusturduk
+        // Simdi bu kupon üzerinde degisiklik yapip patch request gonderecegiz.
+        // Olusturmus oldugumuz coupon üzerinde degisiklik yapabilmemiz icin,
+        // response body de bize donen id bilgisine ihtiyacimiz var.
+        // Response body deki bilgilere daha kolay ulasabilmek icin önce onu JsonPath e cevirelim
+
+        responseJsonPath = response.jsonPath();
+        createdCouponId = responseJsonPath.getInt("data.added_coupon_id");
+        // Olusturmus oldugumuz bu id üzerinden bir patch sorgusu yapacagiz.
+
+        // 1 - endpoint ve varsa request body hazirlamaliyiz.
+
+        spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url", "api")).build();
+        spec.pathParams("pp1", "api", "pp2", "editCoupon", "pp3", createdCouponId);
+
+        // Patch sorgusu gonderirken request body ye ihtiyacimiz olacak
+        /*
+           | service_id | coupon_name | percentage | start_date | valid_days | user_limit | description  |
+           | 102        | CPNNEK745   | 20         | 2024-07-17 | 15          | 10          | DENEME       |
+         */
+
+        mapRequestBody = new HashMap<>();
+        /*
+        {
+        "valid_days":2,
+        "user_limit":3,
+        "description":"Coupon Desc. Updated"
+        }
+         */
+        mapRequestBody.put("valid_days", 2);
+        mapRequestBody.put("user_limit", 3);
+        mapRequestBody.put("description", "Coupon Desc. Updated");
+
+        // 3- request gonderme ve donen response u kaydetme
+
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .header("token", Authentication.generateToken())
+                .when().body(mapRequestBody)
+                .patch("/{pp1}/{pp2}/{pp3}");
+
+    }
+
+
+    @Given("The api user creates a new coupon, esra.")
+    public void the_api_user_creates_a_new_coupon_esra() {
+        testData = new TestData();
+        mapRequestBody = testData.couponRequestBody2(); // zaten olusturulmus bir request body var
+
+        // post request gonderecegiz.
+
+        spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url", "api")).build();
+        spec.pathParams("pp1", "api", "pp2", "addCoupon");
+
+        response = given()
+                .spec(spec)
+                .header("Accept", "application/json")
+                .header("token", Authentication.generateToken())
+                .when().body(mapRequestBody)
+                .post("/{pp1}/{pp2}");
+
+        response.prettyPrint();
+
+    }
+
+    @Given("The api user verifies that the status code is {int} and the {string} information in the response body is {string}, esra")
+    public void the_api_user_verifies_that_the_status_code_is_and_the_information_in_the_response_body_is_esra(Integer int1, String string, String string2) {
+
+        // 4- assertion => sonraki stepte
+        response.then()
+                .assertThat()
+                .statusCode(200);
+
+        response.then()
+                .assertThat()
+                .body("response.response_message", equalTo("Coupon Details Updated successfully"));
+
+    }
+
+    @Given("The api user deletes edited coupon, esra.")
+    public void the_api_user_deletes_edited_coupon_esra() {
+
+        // patch islemi sonucunda editlemis oldugumuz coupon u silmemiz gerekiyor.
+
+        responseJsonPath = response.jsonPath();
+        createdCouponId = responseJsonPath.getInt("data.updated_coupon_id"); // editledigimiz coupon un id si üzerinden delete sorgusu yapacagiz.
+
+        if (createdCouponId != 0) {
+
+            spec = new RequestSpecBuilder().setBaseUri(ConfigReader.getProperty("base_url", "api")).build();
+            spec.pathParams("pp1", "api", "pp2", "deleteCoupon", "pp3", createdCouponId);
+
+            String createdCouponIdString = createdCouponId + "";
+
+            response = given()
+                    .spec(spec)
+                    .header("Accept", "application/json")
+                    .header("token", Authentication.generateToken())
+                    .when()
+                    .delete("/{pp1}/{pp2}/{pp3}");
+
+            response.then()
+                    .assertThat()
+                    .body("data.deleted_coupon_id", equalTo(createdCouponIdString)); // dogrulama icin
+
+        }
+    }
+
+    @Given("The api user sends a {string} request with no data and saves the returned response, esra.")
+    public void the_api_user_sends_a_request_with_no_data_and_saves_the_returned_response_esra(String httpMethod) {
+
+        mapRequestBody = new HashMap<>();
+        // Bunu bos bir sekilde yollayacagiz.
+        API_Methods.sendRequest(httpMethod, mapRequestBody);
 
     }
 
