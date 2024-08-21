@@ -15,7 +15,7 @@ import org.junit.runner.RunWith;
         },
         features = {"src/test/resources/features/API", "src/test/resources/features/DB"},
         glue = {"stepdefinitions","hooks","utilities"},
-        tags = "@Damra",
+        tags = "@DAMRA",
         dryRun =false
 )
 public class Runner {
