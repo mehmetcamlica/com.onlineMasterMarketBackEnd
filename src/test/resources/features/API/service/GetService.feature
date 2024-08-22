@@ -1,4 +1,4 @@
-Feature:As a provider I want to be able to access blogs via API connection.
+Feature:As a provider I want to be able to access Service via API connection.
 
 
 
@@ -18,7 +18,7 @@ Feature:As a provider I want to be able to access blogs via API connection.
 
     Examples:
       | dataIndex | service_id | service_title| finalAmount | currency_code | service_location  |
-      | 0         | 108        | Test Service    | 150        |   USD         |           |
+      | 0         | 115        | Test Service    | 150        |   USD         |           |
 
 
 

@@ -27,7 +27,6 @@ import static org.hamcrest.Matchers.equalTo;
 public class ServiceStepdefinitions {
 
 
-
     JSONObject requestBody;
     HashMap<String, Object> reqBody;
 
@@ -59,7 +58,6 @@ public class ServiceStepdefinitions {
         response.prettyPrint();
 
 
-
     }
 
     @Given("The api user verifies that the status code is {int} DAMRA.")
@@ -87,11 +85,9 @@ public class ServiceStepdefinitions {
 
         jsonPath = response.jsonPath();
 
-        Assert.assertEquals(service_id, jsonPath.getString("data["+dataIndex+"].service_id"));
+        Assert.assertEquals(service_id, jsonPath.getString("data[" + dataIndex + "].service_id"));
 
-          }
-
-
+    }
 
 
     @Given("The api user sends a GET request, saves the returned response, and verifies that the status code is {string} with the reason phrase Unauthorized DAMRA.")
@@ -100,7 +96,7 @@ public class ServiceStepdefinitions {
         try {
             response = given()
                     .spec(HooksAPI.spec)
-                    .header("token", Authentication.generateToken())
+                    .header("token", "asdnask1312")
                     .header("Accept", "application/json")
                     .when()
                     .get(API_Methods.fullPath);
@@ -122,20 +118,18 @@ public class ServiceStepdefinitions {
     public void the_api_user_prepares_a_post_request_containing_information_to_send_to_the_api_add_blog_endpoint(int shop_id, int staff_id, int duration, String service_title, String category, String subcategory, int service_amount, String about) {
 
 
+        // addServicepojo = new AddServicepojo(shop_id, staff_id, duration, service_title, category, subcategory, service_amount, about);
 
-       // addServicepojo = new AddServicepojo(shop_id, staff_id, duration, service_title, category, subcategory, service_amount, about);
+            requestBody = new JSONObject();
 
-         requestBody=new JSONObject();
-
-        requestBody.put("shop_id",shop_id);
-        requestBody.put("staff_id",staff_id);
-        requestBody.put("duration",duration);
-        requestBody.put("service_title",service_title);
-        requestBody.put("category",category);
-        requestBody.put("subcategory",subcategory);
-        requestBody.put("service_amount",service_amount);
-        requestBody.put("about",about);
-
+        requestBody.put("shop_id", shop_id);
+        requestBody.put("staff_id", staff_id);
+        requestBody.put("duration", duration);
+        requestBody.put("service_title", service_title);
+        requestBody.put("category", category);
+        requestBody.put("subcategory", subcategory);
+        requestBody.put("service_amount", service_amount);
+        requestBody.put("about", about);
 
 
     }
@@ -144,7 +138,7 @@ public class ServiceStepdefinitions {
     public void the_api_user_sends_a_post_request_and_saves_the_returned_response() {
 
 
-      API_Methods.sendRequest("POST",requestBody.toString());
+        API_Methods.sendRequest("POST", requestBody.toString());
 
 
     }
@@ -152,15 +146,14 @@ public class ServiceStepdefinitions {
     @Given("The api user prepares a post request containing {int}, {int}, {int}, {string}, {string}, {string} information to send to the api addService endpoint DAMRA.")
     public void the_api_user_prepares_a_post_request_containing_information_to_send_to_the_api_add_service_endpoint(Integer shop_id, Integer staff_id, Integer duration, String category, String subcategory, String service_title) {
 
-        requestBody=new JSONObject();
+        requestBody = new JSONObject();
 
-        requestBody.put("shop_id",shop_id);
-        requestBody.put("staff_id",staff_id);
-        requestBody.put("duration",duration);
-        requestBody.put("service_title",service_title);
-        requestBody.put("category",category);
-        requestBody.put("subcategory",subcategory);
-
+        requestBody.put("shop_id", shop_id);
+        requestBody.put("staff_id", staff_id);
+        requestBody.put("duration", duration);
+        requestBody.put("service_title", service_title);
+        requestBody.put("category", category);
+        requestBody.put("subcategory", subcategory);
 
 
     }
@@ -179,17 +172,16 @@ public class ServiceStepdefinitions {
     @Given("The api user prepares a patch request containing {int}, {int}, {int}, {string}, {string}, {string}, {int}, {string} information to send to the api addService endpoint DAMRA.")
     public void the_api_user_prepares_a_patch_request_containing_information_to_send_to_the_api_add_service_endpoint_damra(int shop_id, int staff_id, int duration, String service_title, String category, String subcategory, int service_amount, String about) {
 
-        requestBody=new JSONObject();
+        requestBody = new JSONObject();
 
-        requestBody.put("shop_id",shop_id);
-        requestBody.put("staff_id",staff_id);
-        requestBody.put("duration",duration);
-        requestBody.put("service_title",service_title);
-        requestBody.put("category",category);
-        requestBody.put("subcategory",subcategory);
-        requestBody.put("service_amount",service_amount);
-        requestBody.put("about",about);
-
+        requestBody.put("shop_id", shop_id);
+        requestBody.put("staff_id", staff_id);
+        requestBody.put("duration", duration);
+        requestBody.put("service_title", service_title);
+        requestBody.put("category", category);
+        requestBody.put("subcategory", subcategory);
+        requestBody.put("service_amount", service_amount);
+        requestBody.put("about", about);
 
 
     }
@@ -197,16 +189,16 @@ public class ServiceStepdefinitions {
     @Given("The api user prepares a patch request containing {int} {int}, {int}, {int}, {string}, {string}, {string}, {int}, {string} information to send to the api addService endpoint DAMRA.")
     public void the_api_user_prepares_a_patch_request_containing_information_to_send_to_the_api_add_service_endpoint_damra(Integer int1, Integer shop_id, Integer staff_id, Integer duration, String service_title, String category, String subcategory, Integer service_amount, String about) {
 
-        requestBody=new JSONObject();
+        requestBody = new JSONObject();
 
-        requestBody.put("shop_id",shop_id);
-        requestBody.put("staff_id",staff_id);
-        requestBody.put("duration",duration);
-        requestBody.put("service_title",service_title);
-        requestBody.put("category",category);
-        requestBody.put("subcategory",subcategory);
-        requestBody.put("service_amount",service_amount);
-        requestBody.put("about",about);
+        requestBody.put("shop_id", shop_id);
+        requestBody.put("staff_id", staff_id);
+        requestBody.put("duration", duration);
+        requestBody.put("service_title", service_title);
+        requestBody.put("category", category);
+        requestBody.put("subcategory", subcategory);
+        requestBody.put("service_amount", service_amount);
+        requestBody.put("about", about);
 
         System.out.println(requestBody.toString());
 
@@ -233,75 +225,76 @@ public class ServiceStepdefinitions {
     @Given("The api user verifies that the updated_service_id information in the response body {string} is the same as the id path parameter DAMRA.")
     public void the_api_user_verifies_that_the_updated_service_id_information_in_the_response_body_is_the_same_as_the_id_path_parameter_damra(String id) {
 
-           jsonPath= response.jsonPath();
+        jsonPath = response.jsonPath();
 
-           String valueID = String.valueOf(API_Methods.id);
+        String valueID = String.valueOf(API_Methods.id);
 
-           Assert.assertEquals(valueID,jsonPath.getString(id));
+        Assert.assertEquals(valueID, jsonPath.getString(id));
 
 
     }
 
 
     @Given("The api user prepares a patch request containing {int}, {int}, {string}, {string}, {string}, {int}, {string} information to send to the api addService endpoint DAMRA.")
-      public void the_api_user_prepares_a_patch_request_containing_information_to_send_to_the_api_add_service_endpoint_damra(Integer id,Integer duration, String service_title, String category, String subcategory, int service_amount, String about ) {
+    public void the_api_user_prepares_a_patch_request_containing_information_to_send_to_the_api_add_service_endpoint_damra(Integer id, Integer duration, String service_title, String category, String subcategory, int service_amount, String about) {
 
 
-        requestBody=new JSONObject();
-        requestBody.put("duration",duration);
-        requestBody.put("service_title",service_title);
-        requestBody.put("category",category);
-        requestBody.put("subcategory",subcategory);
-        requestBody.put("service_amount",service_amount);
-        requestBody.put("about",about);
+        requestBody = new JSONObject();
+        requestBody.put("duration", duration);
+        requestBody.put("service_title", service_title);
+        requestBody.put("category", category);
+        requestBody.put("subcategory", subcategory);
+        requestBody.put("service_amount", service_amount);
+        requestBody.put("about", about);
     }
 
     @Given("The api user prepares a patch request containing   {int}, {int}, {int}, {string}, {string}, {string}, {int}, {string} information to send to the api addService endpoint DAMRA.")
     public void the_api_user_prepares_a_patch_request_containing_information_to_send_to_the_api_add_service_endpoint_damra(Integer shop_id, Integer staff_id, Integer duration, String service_title, String category, String subcategory, Integer service_amount, String about) {
-        requestBody=new JSONObject();
-        requestBody.put("shop_id",shop_id);
-        requestBody.put("staff_id",staff_id);
-        requestBody.put("duration",duration);
-        requestBody.put("service_title",service_title);
-        requestBody.put("category",category);
-        requestBody.put("subcategory",subcategory);
-        requestBody.put("service_amount",service_amount);
-        requestBody.put("about",about);
+        requestBody = new JSONObject();
+        requestBody.put("shop_id", shop_id);
+        requestBody.put("staff_id", staff_id);
+        requestBody.put("duration", duration);
+        requestBody.put("service_title", service_title);
+        requestBody.put("category", category);
+        requestBody.put("subcategory", subcategory);
+        requestBody.put("service_amount", service_amount);
+        requestBody.put("about", about);
 
     }
+
     @Given("The api user sends a {string} request and saves the returned response Damra.")
     public void the_api_user_sends_a_request_and_saves_the_returned_response_damra(String string) {
 
     }
+
     @Given("The api user sends a {string} request and saves the returned response damraa.")
     public void the_api_user_sends_a_request_and_saves_the_returned_response_damraa(String string) {
 
-try {
-    response = given()
-            .spec(HooksAPI.spec)
-            .header("token", "asda1j23j123")
-            .header("Accept", "application/json")
-            .contentType(ContentType.JSON)
-            .when()
-            .body(requestBody.toString())
-            .patch(API_Methods.fullPath);
+        try {
+            response = given()
+                    .spec(HooksAPI.spec)
+                    .header("token", "asda1j23j123")
+                    .header("Accept", "application/json")
+                    .contentType(ContentType.JSON)
+                    .when()
+                    .body(requestBody.toString())
+                    .patch(API_Methods.fullPath);
 
 
+        } catch (Exception e) {
 
-       }catch (Exception e){
+            exceptionMesaj = e.getMessage();
+        }
 
-        exceptionMesaj=e.getMessage();
-       }
-
-Assert.assertEquals("status code: 401, reason phrase: Unauthorized",exceptionMesaj);
+        Assert.assertEquals("status code: 401, reason phrase: Unauthorized", exceptionMesaj);
 
     }
 
     @Given("The api user prepares a patch request containing {string} information to send to the api addService endpoint DAMRA.")
     public void the_api_user_prepares_a_patch_request_containing_information_to_send_to_the_api_add_service_endpoint_damra(String shop_id) {
 
-        requestBody=new JSONObject();
-        requestBody.put("shop_id",shop_id);
+        requestBody = new JSONObject();
+        requestBody.put("shop_id", shop_id);
 
         System.out.println(requestBody.toString());
 
@@ -311,7 +304,6 @@ Assert.assertEquals("status code: 401, reason phrase: Unauthorized",exceptionMes
     public void the_api_user_verify_that_the_updated_service_id_in_the_response_body_returned_from_the_endpoint_is_the_same_as_the_id_path_parameter_in_the_endpoint_damra(int shop_id) {
 
 
-
         jsonPath = response.jsonPath();
 
         Assert.assertEquals(shop_id, jsonPath.getString("data.shop_id"));
@@ -319,8 +311,92 @@ Assert.assertEquals("status code: 401, reason phrase: Unauthorized",exceptionMes
 
     @Given("The api user service_title information {string} verification.")
     public void the_api_user_service_title_information_verification(String service) {
-      response.then().assertThat().body("data.service_overview.service_title", Matchers.equalTo(service));
+        response.then().assertThat().body("data.service_overview.service_title", Matchers.equalTo(service));
     }
 
+
+    @Given("The api user sends a DELETE request and saves the returned response.")
+    public void the_api_user_sends_a_delete_request_and_saves_the_returned_response() {
+
+        response = given()
+                .spec(HooksAPI.spec)
+                .header("token", Authentication.generateToken())
+                .header("Accept", "application/json")
+                .when()
+                .delete(API_Methods.fullPath);
+
+        response.prettyPrint();
+
+
+    }
+
+    @Given("The api user verifies that the {string} information in the response body is {string}.")
+    public void the_api_user_verifies_that_the_information_in_the_response_body_is(String key, String value) {
+
+        response.then().assertThat().body(key, equalTo(value));
+
+    }
+
+    @Given("The api user verifies that the deleted_service_id information in the response body {string} is the same as the id path parameter")
+    public void the_api_user_verifies_that_the_deleted_service_id_information_in_the_response_body_is_the_same_as_the_id_path_parameter(String id) {
+
+       // jsonPath = response.jsonPath();
+
+        //String valueID = String.valueOf(API_Methods.id);
+
+        //Assert.assertEquals(valueID, jsonPath.getString(id));
+
+
+
+
+    }
+
+
+    @Given("The api user sends a DELETE request, saves the returned response, and verifies that the status code is {string} with the reason phrase Unauthorized.")
+    public void the_api_user_sends_a_delete_request_saves_the_returned_response_and_verifies_that_the_status_code_is_with_the_reason_phrase_unauthorized(String string) {
+
+        try {
+
+            response = given()
+                    .spec(HooksAPI.spec)
+                    .header("token", "1nb23nb123")
+                    .header("Accept", "application/json")
+                    .when()
+                    .delete(API_Methods.fullPath);
+
+            response.prettyPrint();
+
+        } catch (Exception e) {
+
+            exceptionMesaj = e.getMessage();
+        }
+
+        System.out.println("Mesaj : " + exceptionMesaj);
+
+        Assert.assertEquals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api"), exceptionMesaj);
+
+    }
+
+    @Given("The api user sends a DELETE request and saves the returned response DAMRA.")
+    public void the_api_user_sends_a_delete_request_and_saves_the_returned_response_damra() {
+
+    try {
+        response = given()
+                .spec(HooksAPI.spec)
+                .header("token", "KABASD1ı32131")
+                .header("Accept", "application/json")
+                .when()
+                .delete(API_Methods.fullPath);
+    }catch (Exception e){
+
+        exceptionMesaj=e.getMessage();
+
+
+    }
+
+        System.out.println("Mesaj : " + exceptionMesaj);
+
+        Assert.assertEquals(ConfigReader.getProperty("unauthorizedExceptionMessage", "api"), exceptionMesaj);
+    }
 
 }
