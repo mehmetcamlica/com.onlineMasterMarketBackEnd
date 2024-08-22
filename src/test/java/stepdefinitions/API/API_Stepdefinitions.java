@@ -8,17 +8,16 @@ import static org.junit.Assert.assertEquals;
 
 public class API_Stepdefinitions {
 
-    String requestBody;
+    public static String requestBody;
 
     @Given("The api user sets {string} path parameters.")
     public void the_api_user_sets_path_parameters(String pathParam) {
-        if (API_Methods.addedId == 0) {
-            API_Methods.pathParam(pathParam);
-        } else {
-            API_Methods.pathParam(pathParam + "/" + API_Methods.addedId);
-        }
-
-    }
+      if (API_Methods.addedId == 0) {
+        API_Methods.pathParam(pathParam);
+       } else {
+         API_Methods.pathParam(pathParam + "/" + API_Methods.addedId);
+      }
+}
 
     @Given("The api user sends a {string} request and saves the returned response.")
     public void the_api_user_sends_a_request_and_saves_the_returned_response(String httpMethod) {
@@ -38,6 +37,7 @@ public class API_Stepdefinitions {
     public void the_api_user_verifies_that_the_information_in_the_response_body_is(String key, String value) {
         API_Methods.assertBody(key, value);
     }
+
 
     @Given("The api user verifies that the {string} information in the returned response body is the same as the id path parameter written in the endpoint.")
     public void the_api_user_verifies_that_the_information_in_the_returned_response_body_is_the_same_as_the_id_path_parameter_written_in_the_endpoint(String reponseId) {
