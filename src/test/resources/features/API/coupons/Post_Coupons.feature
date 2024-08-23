@@ -1,6 +1,5 @@
 Feature: As a provider, I want to be able to create a new coupon record via API connection.
 
-
   Scenario Outline: When a POST body with valid authorization information and correct data (service_id, coupon_name, percentage, start_date, valid_days, user_limit, description) is sent to /api/addCoupon endpoint, it should be verified that the status code returned is 200 and the response_message in the response body is "Coupon added successfully".
 
     * The api user sets "api/addCoupon" path parameters, esra.

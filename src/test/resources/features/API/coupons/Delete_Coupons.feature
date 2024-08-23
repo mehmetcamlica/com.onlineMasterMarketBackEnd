@@ -33,8 +33,6 @@ Feature: As a provider, I want to be able to delete coupon information with the 
 
   @Delete
   Scenario: coupon The deletion of the coupon record requested to be deleted from the API must be verified from the API.(With the deleted_coupon_id returned in the response body, a GET request can be sent to the /api/coupon-details/{id} endpoint to verify that the record has been deleted.)
-  #API uzerinden silinmek istenen coupon kaydinin silindigi, API uzerinden dogrulanmali.
-  # (Response body'de dönen deleted_coupon_id ile /api/coupon-details/{id} endpoint'ine GET request gönderilerek kaydın silindiği doğrulanabilir.)
 
     * The api user sets "api/deleteCoupon" path parameters, esra.
     * The api user sends a "DELETE" request and saves the returned response, esra.

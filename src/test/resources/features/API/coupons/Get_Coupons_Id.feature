@@ -1,4 +1,3 @@
-@wip
 Feature: As a provider, I should be able to access the detailed information of the coupon with the specified id number via API connection.
 
   Scenario Outline: When a GET request with valid authorization information and correct data (id) is sent to the /api/coupon-details/{id} endpoint, it should be verified that the status code returned is 200 and the response_message in the response body is "Coupon Details".
