@@ -1,7 +1,7 @@
 
 Feature:As a provider, I want to be able to delete category information with the specified id number via API connection.
 
-  Scenario Outline: When a DELETE request with valid authorization information and the correct (id) is
+  Scenario Outline:TC001- When a DELETE request with valid authorization information and the correct (id) is
   sent to the /api/deleteCategory/{id} endpoint, it should be verified that the
   status code returned is 200 and the response_message in the response body is "Category,Sub-category and Services deleted successfully".
     * The api user sets "api/deleteCategory/<id>" path parameters Gokcen.
@@ -10,9 +10,9 @@ Feature:As a provider, I want to be able to delete category information with the
     * The api user verifies that the "response.response_message" information in the response body is "Category,Sub-category and Services deleted successfully" Gokcen.
     Examples:
       | id |
-      |19  |
+      |34  |
 
-    Scenario Outline: When a DELETE request is sent to the /api/deleteCategory/{id} endpoint that does not contain valid authorization information and (id), it should be verified that the
+    Scenario Outline:TC002- When a DELETE request is sent to the /api/deleteCategory/{id} endpoint that does not contain valid authorization information and (id), it should be verified that the
     status code returned is 203 and the response_message in the response body is "Id missing".
       * The api user sets "api/deleteCategory/<id>" path parameters Gokcen.
       * The api user sends a DELETE request and saves the returned response Gokcen.
@@ -21,7 +21,7 @@ Feature:As a provider, I want to be able to delete category information with the
       Examples:
         | id |
         |    |
-      Scenario Outline: When a DELETE request is sent to the /api/deleteCategory/{id} endpoint
+      Scenario Outline:TC003-  When a DELETE request is sent to the /api/deleteCategory/{id} endpoint
       with valid authorization information and an unregistered (id), it should be verified that the
       status code returned is 203 and the response_message in the response body is "No Results found for the given ID".
         * The api user sets "api/deleteCategory/<id>" path parameters Gokcen.
@@ -32,7 +32,7 @@ Feature:As a provider, I want to be able to delete category information with the
           | id |
           | 345  |
 
-        Scenario Outline: When a DELETE request is sent to the /api/deleteCategory/{id} endpoint
+        Scenario Outline:TC004-  When a DELETE request is sent to the /api/deleteCategory/{id} endpoint
         with invalid (invalid API key) authorization information, it should be verified that the
         status code returned is 401 and the response_message in the response body is "Invalid token or token missing".
           * The api user sets "api/deleteCategory/<id>" path parameters Gokcen.
@@ -42,7 +42,7 @@ Feature:As a provider, I want to be able to delete category information with the
             | id |
             | 18 |
 
-  Scenario Outline: Verify that the deleted_category_id in the response body returned from the
+  Scenario Outline:TC005-  Verify that the deleted_category_id in the response body returned from the
   /api/deleteCategory/{id}endpoint is the
   same as the id path parameter in the /api/deleteCategory/{id} endpoint.
 
@@ -52,5 +52,14 @@ Feature:As a provider, I want to be able to delete category information with the
     Examples:
       | id |
       | 20 |
-##Scenario : "The deletion of the category record that is requested to be deleted from the API must be verified from the API.(It can be verified that the record was deleted by sending aGET request to the /api/category_details/{id} endpoint
 
+
+  #Scenario Outline: The deletion of the category record that is requested to be deleted from the API must be
+  #verified from the API.(It can be verified that the record was deleted by sending aGET request to the /api/category_details/{id} endpoint
+
+   # * The api user sets "api/category_details/<id>" path parameters Gokcen.
+   # * The api user verifies that the "response.response_message" is "No Details for this id." by sending a GET request to the "api" "category_details/16" endpoint with the "data.deleted_category_id" returned in the response body.
+
+   # Examples:
+   #  | id |
+    #| 16  |

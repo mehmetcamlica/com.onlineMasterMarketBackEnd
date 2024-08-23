@@ -33,10 +33,14 @@ public class ServiceandShopCategoriesStepDefinitions {
 
     @Given("The api user sends a GET request and saves the returned response Gokcen.")
     public void the_api_user_sends_a_get_request_and_saves_the_returned_response_gokcen() {
-        response = given().spec(HooksAPI.spec).header("token", Authentication.generateToken())
-                .header("Accept", "application/json")
-                .when()
-                .get(API_Methods.fullPath);
+        try {
+            response = given().spec(HooksAPI.spec).header("token", Authentication.generateToken())
+                    .header("Accept", "application/json")
+                    .when()
+                    .get(API_Methods.fullPath);
+        } catch (Exception e) {
+            exceptionMessage = e.getMessage();
+        }
         response.prettyPrint();
 
     }
