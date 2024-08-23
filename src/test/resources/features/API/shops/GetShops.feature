@@ -1,5 +1,5 @@
 Feature:As a provider, I want to be able to access the shops via API connection.
-@US1
+@US36
   Scenario Outline:When a GET request is sent to /api/myShops endpoint with valid authorization information,
   it should be verified that the status code returned is 200 and the response_message in the response body is "Shops Listed Successfully"
   .When a GET request is sent to /api/myShops endpoint with valid authorization information, the information
